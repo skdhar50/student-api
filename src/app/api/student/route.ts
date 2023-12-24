@@ -30,11 +30,14 @@ export async function GET(request: NextRequest) {
 
   try {
     if (!id) {
-      const allStudents = await prisma.student.findMany();
+      const allStudents = await prisma.student.findMany({
+        include: { enroll: true },
+      });
       return NextResponse.json({ data: allStudents }, { status: 200 });
     } else {
       const student = await prisma.student.findUnique({
         where: { id: Number(id) },
+        include: { enroll: true },
       });
       return NextResponse.json({ data: student }, { status: 200 });
     }
