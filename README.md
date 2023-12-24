@@ -72,9 +72,7 @@
 
 ## Enroll
 
-    [
-        {
-    		"course_id":  "1",
-    		"student_id":  "1"
-    	}
-    ]
+    {
+        "course_id":  "1",
+        "student_id":  "1"
+    }
