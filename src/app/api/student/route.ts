@@ -16,6 +16,8 @@ interface StudentType {
   grade: string;
 }
 
+const prisma = new PrismaClient();
+
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
@@ -26,7 +28,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const prisma = new PrismaClient();
     const students = body?.map((student: StudentType) => {
       return {
         first_name: student.first_name,
@@ -39,6 +40,28 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({ data: newStudent }, { status: 200 });
+  } catch (err) {
+    return NextResponse.json(
+      { message: "Something is wrong! Please try again!" },
+      { status: 401 }
+    );
+  }
+}
+
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  try {
+    if (!id) {
+      const allStudents = await prisma.student.findMany();
+      return NextResponse.json({ data: allStudents }, { status: 200 });
+    } else {
+      const student = await prisma.student.findUnique({
+        where: { id: Number(id) },
+      });
+      return NextResponse.json({ data: student }, { status: 200 });
+    }
   } catch (err) {
     return NextResponse.json(
       { message: "Something is wrong! Please try again!" },
