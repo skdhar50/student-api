@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Student Registration
 
-## Getting Started
+## API Endpoints
 
-First, run the development server:
+    /api/student
+    /api/student?id=2
+    /api/enroll
+    /api/course
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Description
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## **Student**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Method Type | API               | Des                                                                                  |
+| ----------- | ----------------- | ------------------------------------------------------------------------------------ |
+| GET         | /api/student      | To get all students                                                                  |
+|             | /api/student?id=2 | To get single student                                                                |
+| POST        | /api/student      | To create single or multiple student. **Note: The data must be passed inside an []** |
+| DELETE      | /api/student?id=2 | To delete a single student                                                           |
+| PATCH       | /api/student?id=2 | To update the info of the student                                                    |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## **Course**
 
-## Learn More
+| Method Type | API         | Des                                                                                  |
+| ----------- | ----------- | ------------------------------------------------------------------------------------ |
+| POST        | /api/course | To create single or multiple student. **Note: The data must be passed inside an []** |
 
-To learn more about Next.js, take a look at the following resources:
+## **Enroll**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Method Type | API         | Des                     |
+| ----------- | ----------- | ----------------------- |
+| POST        | /api/enroll | To create an enrollment |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## **Dummy Data**
 
-## Deploy on Vercel
+## Student
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    [
+    	{
+    		"first_name":  "Student 1",
+    		"last_name":  "Demo 1",
+    		"grade":  "7th"
+    	},
+    	{
+    		"first_name":  "Student 2",
+    		"last_name":  "Demo 2",
+    		"grade":  "7th"
+    	},
+    	{
+    		"first_name":  "Student 3",
+    		"last_name":  "Demo 3",
+    		"grade":  "10th"
+    	},
+    ]
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Course
+
+    [
+        {
+    		"course_name":  "English",
+    		"course_code":  "E-101"
+    	},
+    	{
+    		"course_name":  "Bangla",
+    		"course_code":  "B-101"
+    	},
+    	{
+    		"course_name":  "Religion",
+    		"course_code":  "R-101"
+    	},
+    ]
+
+## Enroll
+
+    [
+        {
+    		"course_id":  "1",
+    		"student_id":  "1"
+    	}
+    ]
