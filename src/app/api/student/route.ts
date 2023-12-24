@@ -69,3 +69,30 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  try {
+    if (id) {
+      const student = await prisma.student.delete({
+        where: { id: Number(id) },
+      });
+      return NextResponse.json(
+        { data: student, message: "Student deleted successfully!" },
+        { status: 200 }
+      );
+    } else {
+      return NextResponse.json(
+        { message: "Student not available!" },
+        { status: 401 }
+      );
+    }
+  } catch (err) {
+    return NextResponse.json(
+      { message: "Something is wrong! Please try again!" },
+      { status: 401 }
+    );
+  }
+}
